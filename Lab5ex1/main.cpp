@@ -1,42 +1,33 @@
-#include "Number.h"
-#include <iostream>
-
-using namespace std;
-
 int main()
 {
-	int i;
-	Number n1("1101", 2); //=13 in baza 10
-	Number n2("1010", 3); //=31 in baza 10
-	Number r("0", 10);
-	cout << "n1 este:"; n1.Print();
-	cout << "\nBaza lui n1 este:" << n1.GetBase();
-	cout << "\nn2 este:"; n2.Print();
-	cout << "\nBaza lui n2 este:" << n2.GetBase();
-	r = n1 + n2;
-	cout << "\nn1+n2 (in baza 3) este:";
-	r.Print();
-	r = n1 - n2;
-	cout << "\nn1-n2 (in baza 3) este:"; r.Print();
-	cout << "\nValoarea expresiei n1 == n2 este:" << (n1 == n2);
-	cout << "\nValoarea expresiei n1 < n2 este:" << (n1 < n2);
-	cout << "\nValoarea expresiei n1 > n2 este:" << (n1 > n2);
-	cout << "\nValoarea expresiei n1 <= n2 este:" << (n1 <= n2);
-	cout << "\nValoarea expresiei n1 >= n2 este:" << (n1 >= n2);
-	cout << "\nValoarea expresiei n1 != n2 este:" << (n1 != n2);
-	cout << "\nValoarea expresiei n1 == n2 este:" << (n1 == n2);
-	cout << "\nCifrele lui n1 de la dreapta la stanga sunt:";
-	for (i = n1.GetDigitsCount() - 1; i >= 0; i--)
-		cout << n1[i] << " ";
-	cout << "\nCifrele lui n2 de la dreapta la stanga sunt:";
-	for (i = n2.GetDigitsCount() - 1; i >= 0; i--)
-		cout << n2[i] << " ";
-	n1.SwitchBase(3);
-	cout << "\nn1 in baza 3 este:"; n1.Print();
-	n2.SwitchBase(2);
-	cout << "\nn2 in baza 2 este:"; n2.Print();
-	--n1;
-	cout << "\nn1 fara prima cifra:"; n1.Print();
-	n2--;
-	cout << "\nn2 fara ultima cifra:"; n2.Print();
+   Number n1("10110010",2);
+   Number n2("734",8);
+   Number n3("FF",16);
+
+   printf("n1 has %d digits and it is written in base %d\n",n1.GetDigitsCount(),n1.GetBase());
+   for (int tr=0;tr<n1.GetDigitsCount();tr++)
+   {
+      printf("n1[%d]=%c\n",tr,n1[tr]);
+   }
+   n1.Print();
+   n2.Print();
+   n1 = (n2+n3-n1)+n1; // after this n1 will be in base 16
+   n1.SwitchBase(2);
+   n1.Print();
+
+   if (n1>n2) printf("n1 is bigger than n2\n"); else printf("n2 is bigger than n1\n");
+
+   Number n4=12345; // n4 will be in base 10
+   n1 = 255; // n1 will be 11111111 (value 255 from base 10 in base 2)
+   n4 += n1; 
+   n4.Print();
+
+   n4 = "13579"; // n4 mentains its base (10) and will be 13579
+   n4.Print();
+   --n4; // the first digit from n4 will be remove ==> n4 becomes 3579
+   n4.Print();
+   n4--; // the last digit from n4 will be remove ==> n4 becomes 357
+   n4.Print();
+
+   return 0;
 }
