@@ -417,3 +417,11 @@ char& Number::operator[](int i)
 {
 	return value[i];
 }
+Number& Number::operator+=(const Number& other) {
+    int currentValue = this->ToInteger();
+
+    int otherValue = other.ToInteger();
+    *this = currentValue + otherValue;
+
+    return *this;
+}
